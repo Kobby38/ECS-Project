@@ -306,13 +306,13 @@ variable "rds_db_name" {
 }
 variable "rds_username" { 
   description = "Making rds username a variable"
-  default     = "yougotitwrong$"
+  default     = "Kobby"
   type        = string
   sensitive   = true
 }
 variable "db_password" {
   description = "AWS RDS Database Administrator Password"
-  default     = "Kobby"
+  default     = "yougotitwrong$"
   type        = string
   sensitive   = true
 }
