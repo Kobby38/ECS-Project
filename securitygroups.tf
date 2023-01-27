@@ -12,6 +12,7 @@ resource "aws_security_group" "alb-sg"{
     protocol        = "tcp"
     cidr_blocks     = ["0.0.0.0/0"]
   }
+
   ingress {
     description     = "HTTPS from VPC"
     from_port       = var.alb_https_ingress_port
@@ -19,6 +20,7 @@ resource "aws_security_group" "alb-sg"{
     protocol        = "tcp"
     cidr_blocks     = ["0.0.0.0/0"]
    }
+  
   #Outbound Rules  
   egress {
     description     = "Allow all IP and ports outbound"
@@ -29,7 +31,7 @@ resource "aws_security_group" "alb-sg"{
   }
 
   tags = {
-    Name = "ALB-${terraform.workspace}"
+    Name = var.envrionment_name
   }
 }
 # Security group for ECS Contaianers (traffic ALB -> ECS)

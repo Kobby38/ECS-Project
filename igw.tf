@@ -4,7 +4,7 @@ resource "aws_internet_gateway" "igw" {
   depends_on = [aws_internet_gateway.igw]
 
   tags = {
-    Name = "igw-${terraform.workspace}"
+    Name = var.envrionment_name
   }
 }
 

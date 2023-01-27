@@ -212,7 +212,7 @@ variable "alb_https_ingress_port" {
 }
 
 
-variable "protocol" {
+variable "alb_protocol" {
   description = "making protocol a variable"
   default     = "HTTP"
   type        = string

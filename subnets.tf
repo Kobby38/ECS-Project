@@ -6,7 +6,7 @@ resource "aws_subnet" "public_subnet-1" {
   availability_zone       = var.public_subnet-1_availability_zonea
   map_public_ip_on_launch = var.public_subnet-1_map_public_ip_on_launch
   tags = {
-    Name = "public_subnet_1-${terraform.workspace}"
+    Name = var.envrionment_name
   }
 }
 #eu-west 2b
@@ -16,7 +16,7 @@ resource "aws_subnet" "public_subnet-2" {
   availability_zone       = var.public_subnet-2_availability_zoneb
   map_public_ip_on_launch = var.public_subnet-2_map_public_ip_on_launch
   tags = {
-    Name = "public_subnet_2-${terraform.workspace}"
+    Name = var.envrionment_name
   }
 }
 #create private subnets
@@ -26,7 +26,7 @@ resource "aws_subnet" "private_subnet_1" {
   cidr_block              = var.private_subnet-1_cidr_block
   availability_zone       = var.private_subnet-1_availability_zonea
   tags = {
-    Name = "private_subnet_1-${terraform.workspace}"
+    Name = var.envrionment_name
   }
 }
 #eu-west 2b
@@ -35,7 +35,7 @@ resource "aws_subnet" "private_subnet_2" {
   cidr_block              = var.private_subnet-2_cidr_block
   availability_zone       = var.private_subnet-2_availability_zoneb
   tags = {
-    Name = "private_subnet_2-${terraform.workspace}"
+    Name = var.envrionment_name
   }
 }
 

@@ -12,8 +12,8 @@ resource "aws_lb" "application_alb" {
 # creating Listener for http (redirects traffic from the load balancer to the target group)
 resource "aws_alb_listener" "ecs-alb-http-listener" {
   load_balancer_arn  = aws_lb.application_alb.id
-  port               = var.listener_port
-  protocol           = var.protocol
+  port               = var.alb_http_ingress_port
+  protocol           = var.alb_protocol
   depends_on         = [aws_alb_target_group.ip_target]
 
   default_action {
@@ -31,7 +31,7 @@ resource "aws_alb_listener" "ecs-alb-https-listener" {
   load_balancer_arn  = aws_lb.application_alb.id
   port               = "443"
   protocol           = "HTTPS"
-  ssl_policy         = "ELBSecurityPolicy-2016-08"
+  ssl_policy         = "ELBSecurityPolicy-TLS-1-2-Ext-2018-06"
   certificate_arn    = aws_acm_certificate.e-learning.arn
   depends_on         = [aws_alb_target_group.ip_target]
 
@@ -46,7 +46,7 @@ resource "aws_alb_target_group" "ip_target"{
     enabled            = var.enablehealthcheck
     interval            = var.healthcheckinterval
     path                = "/"
-    protocol            = var.protocol
+    protocol            = var.alb_protocol
     port                = var.healthcheckport
     timeout             = var.healthchecktimeout
     healthy_threshold   = var.healthythreshold
@@ -56,11 +56,11 @@ resource "aws_alb_target_group" "ip_target"{
   name        = var.healthcheckname
   target_type = var.target-type
   port        = var.traffic-port
-  protocol    = var.protocol
+  protocol    = var.alb_protocol
   vpc_id      = aws_vpc.ecs_vpc.id
 
   tags = {
-    Name = "e-learning-alb-${terraform.workspace}"
+    Name = var.envrionment_name
   }
 }
 

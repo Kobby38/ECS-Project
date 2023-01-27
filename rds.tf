@@ -25,7 +25,7 @@ resource "aws_db_instance" "postgres" {
   skip_final_snapshot     = var.skip_final_snapshot
 
   tags = {
-    Name = "e-learning_postgres-${terraform.workspace}"
+    Name = var.envrionment_name
   }
 }
 

@@ -6,6 +6,6 @@ resource "aws_vpc" "ecs_vpc" {
   enable_dns_support   = var.enable_dns_support
 
   tags = {
-    Name = "e-learning-vpc-${terraform.workspace}"
+    Name = var.envrionment_name
   }
 }
